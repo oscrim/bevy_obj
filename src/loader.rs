@@ -2,7 +2,7 @@ use anyhow::Result;
 use bevy_asset::{AssetLoader, LoadContext, LoadedAsset};
 use bevy_render::{
     mesh::{Indices, Mesh, VertexAttributeValues},
-    pipeline::PrimitiveTopology,
+    render_resource::PrimitiveTopology,
 };
 use bevy_utils::BoxedFuture;
 use thiserror::Error;
@@ -98,17 +98,17 @@ fn load_obj_from_bytes(bytes: &[u8], mesh: &mut Mesh) -> Result<(), ObjError> {
 }
 
 fn set_position_data(mesh: &mut Mesh, data: Vec<[f32; 3]>) {
-    let positions = VertexAttributeValues::Float3(data);
+    let positions = VertexAttributeValues::Float32x3(data);
     mesh.set_attribute(Mesh::ATTRIBUTE_POSITION, positions);
 }
 
 fn set_normal_data(mesh: &mut Mesh, data: Vec<[f32; 3]>) {
-    let normals = VertexAttributeValues::Float3(data);
+    let normals = VertexAttributeValues::Float32x3(data);
     mesh.set_attribute(Mesh::ATTRIBUTE_NORMAL, normals);
 }
 
 fn set_uv_data(mesh: &mut Mesh, data: Vec<[f32; 3]>) {
-    let uvs = VertexAttributeValues::Float3(data);
+    let uvs = VertexAttributeValues::Float32x3(data);
     mesh.set_attribute(Mesh::ATTRIBUTE_UV_0, uvs);
 }
 
